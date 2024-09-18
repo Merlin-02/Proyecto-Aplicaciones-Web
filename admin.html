@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+</head>
+<body>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-container input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.tab-button.active {
+    background-color: #007BFF;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f4f4f4;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.badge.active {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge.pending {
+    background-color: #ffc107;
+    color: white;
+}
+
+.badge.approved {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn {
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+
+</style>
+
+
+    <div class="container">
+        <h1 class="title">Panel de Administración</h1>
+
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Buscar usuarios, proyectos o reportes...">
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="users">Usuarios</button>
+            <button class="tab-button" data-tab="projects">Proyectos</button>
+            <button class="tab-button" data-tab="reports">Reportes</button>
+        </div>
+
+        <div id="users" class="tab-content active">
+            <div class="card">
+                <h2>Gestión de Usuarios</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ana García</td>
+                            <td>ana@example.com</td>
+                            <td><span class="badge active">Active</span></td>
+                            <td>
+                                <button class="btn">Bloquear</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Carlos Martínez</td>
+                            <td>carlos@example.com</td>
+                            <td><span class="badge pending">Pending</span></td>
+                            <td>
+                                <button class="btn">Bloquear</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="projects" class="tab-content">
+            <div class="card">
+                <h2>Revisión de Proyectos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>IA Generativa de Imágenes</td>
+                            <td>Ana García</td>
+                            <td><span class="badge approved">Approved</span></td>
+                            <td><button class="btn">Eliminar</button></td>
+                        </tr>
+                        <tr>
+                            <td>Chatbot Avanzado</td>
+                            <td>Carlos Martínez</td>
+                            <td><span class="badge pending">Pending</span></td>
+                            <td><button class="btn">Aprobar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="reports" class="tab-content">
+            <div class="card">
+                <h2>Reportes y Comentarios</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Elemento Reportado</th>
+                            <th>Razón</th>
+                            <th>Reportado por</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>User</td>
+                            <td>Carlos Martínez</td>
+                            <td>Spam</td>
+                            <td>Ana García</td>
+                            <td><button class="btn">Revisar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+document.querySelectorAll('.tab-button').forEach(button => {
+    button.addEventListener('click', () => {
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+
+        document.getElementById(button.dataset.tab).classList.add('active');
+    });
+});
+
+
+    </script>
+</body>
+</html>

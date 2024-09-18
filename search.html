@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Búsqueda Avanzada</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f3f3;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.results {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#sort {
+  padding: 5px;
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.project-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.project-card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.project-card .tags {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.project-card .tags span {
+  background-color: #eee;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.project-card .meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-card .meta span {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.project-card button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+
+    </style>
+
+    <script>
+
+const projects = [
+  { id: 1, title: "IA Generativa de Imágenes", author: "Ana G.", type: "Modelo", technology: "PyTorch", tags: ["Visión por Computadora", "GAN"], date: "2023-05-15", likes: 156 },
+  { id: 2, title: "Chatbot Avanzado", author: "Carlos M.", type: "Código", technology: "TensorFlow", tags: ["NLP", "Chatbot"], date: "2023-05-10", likes: 98 },
+  { id: 3, title: "Análisis de Sentimientos en Redes Sociales", author: "Elena R.", type: "Artículo", technology: "NLTK", tags: ["NLP", "Análisis de Datos"], date: "2023-05-05", likes: 72 },
+  { id: 4, title: "Predicción de Series Temporales", author: "David L.", type: "Modelo", technology: "Scikit-learn", tags: ["Machine Learning", "Finanzas"], date: "2023-04-30", likes: 134 },
+  { id: 5, title: "Detección de Objetos en Tiempo Real", author: "Sofía P.", type: "Código", technology: "OpenCV", tags: ["Visión por Computadora", "Deep Learning"], date: "2023-04-25", likes: 201 },
+];
+
+const tags = ["Visión por Computadora", "NLP", "Machine Learning", "Deep Learning", "GAN", "Chatbot", "Análisis de Datos", "Finanzas"];
+const technologies = ["PyTorch", "TensorFlow", "NLTK", "Scikit-learn", "OpenCV"];
+const projectTypes = ["Modelo", "Código", "Artículo"];
+
+function renderFilters() {
+  const tagsContainer = document.getElementById('tags-checkboxes');
+  const techContainer = document.getElementById('tech-checkboxes');
+  const typeContainer = document.getElementById('type-checkboxes');
+
+  tags.forEach(tag => {
+    const checkbox = `<label><input type="checkbox" value="${tag}"> ${tag}</label>`;
+    tagsContainer.innerHTML += checkbox;
+  });
+
+  technologies.forEach(tech => {
+    const checkbox = `<label><input type="checkbox" value="${tech}"> ${tech}</label>`;
+    techContainer.innerHTML += checkbox;
+  });
+
+  projectTypes.forEach(type => {
+    const checkbox = `<label><input type="checkbox" value="${type}"> ${type}</label>`;
+    typeContainer.innerHTML += checkbox;
+  });
+}
+
+function renderProjects(filteredProjects) {
+  const projectList = document.getElementById('project-list');
+  projectList.innerHTML = '';
+
+  filteredProjects.forEach(project => {
+    const projectCard = `
+      <div class="project-card">
+        <h2>${project.title}</h2>
+        <p>Por ${project.author}</p>
+        <div class="tags">${project.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
+        <div class="meta">
+          <span>Likes: ${project.likes}</span>
+          <span>Fecha: ${project.date}</span>
+        </div>
+        <button>Ver Detalles</button>
+      </div>
+    `;
+    projectList.innerHTML += projectCard;
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderFilters();
+  renderProjects(projects);
+
+  const searchInput = document.getElementById('search-input');
+  const saveSearchBtn = document.getElementById('save-search-btn');
+  const sortSelect = document.getElementById('sort');
+
+  searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    const filteredProjects = projects.filter(project => project.title.toLowerCase().includes(searchTerm));
+    renderProjects(filteredProjects);
+  });
+
+  saveSearchBtn.addEventListener('click', () => {
+    const searchTerm = searchInput.value;
+    alert(`Búsqueda guardada: ${searchTerm}`);
+  });
+
+  sortSelect.addEventListener('change', () => {
+    const sortBy = sortSelect.value;
+    let sortedProjects = [...projects];
+
+    if (sortBy === 'date') {
+      sortedProjects.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else if (sortBy === 'popularity') {
+      sortedProjects.sort((a, b) => b.likes - a.likes);
+    }
+
+    renderProjects(sortedProjects);
+  });
+});
+
+
+    </script>
+
+  <div class="container">
+    <h1>Búsqueda Avanzada</h1>
+
+    <div class="search-bar">
+      <input type="search" placeholder="Buscar proyectos..." id="search-input">
+      <button id="save-search-btn">Guardar Búsqueda</button>
+    </div>
+
+    <div class="filters">
+      <div class="filter-group">
+        <label>Etiquetas</label>
+        <div class="checkbox-group" id="tags-checkboxes"></div>
+      </div>
+
+      <div class="filter-group">
+        <label>Tecnologías</label>
+        <div class="checkbox-group" id="tech-checkboxes"></div>
+      </div>
+
+      <div class="filter-group">
+        <label>Tipo de Proyecto</label>
+        <div class="checkbox-group" id="type-checkboxes"></div>
+      </div>
+
+      <div class="filter-group">
+        <label>Fecha de Publicación</label>
+        <input type="date" id="date-from" placeholder="Fecha Desde">
+        <input type="date" id="date-to" placeholder="Fecha Hasta">
+      </div>
+    </div>
+
+    <div class="results">
+      <p id="results-count">0 resultados encontrados</p>
+      <div class="sort-by">
+        <label for="sort">Ordenar por:</label>
+        <select id="sort">
+          <option value="relevance">Relevancia</option>
+          <option value="date">Fecha</option>
+          <option value="popularity">Popularidad</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="project-list" id="project-list"></div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

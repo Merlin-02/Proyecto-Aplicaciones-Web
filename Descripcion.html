@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descripción del Proyecto</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+        * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        }
+
+        body {
+        background-color: #f0f0f0;
+        padding: 20px;
+        }
+
+        .container {
+        max-width: 800px;
+        margin: 0 auto;
+        }
+
+        .project-card {
+        background-color: #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        }
+
+        .project-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        }
+
+        .author {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+        }
+
+        .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        }
+
+        .author-name {
+        font-size: 14px;
+        color: gray;
+        }
+
+        .actions {
+        display: flex;
+        gap: 10px;
+        }
+
+        .edit-btn, .delete-btn {
+        padding: 6px 10px;
+        background-color: #e0e0e0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        .project-description {
+        margin-top: 20px;
+        }
+
+        .tech-list {
+        list-style-type: none;
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+        }
+
+        .links {
+        margin-top: 20px;
+        }
+
+        .button {
+        text-decoration: none;
+        padding: 10px 15px;
+        background-color: #007BFF;
+        color: #fff;
+        border-radius: 4px;
+        margin-right: 10px;
+        }
+
+        .project-images {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        }
+
+        .project-tags {
+        margin-top: 20px;
+        }
+
+        .tag {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-right: 10px;
+        }
+
+        .project-footer {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        }
+
+        .like-btn, .favorite-btn, .comment-btn {
+        background-color: #e0e0e0;
+        padding: 6px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        .comments-section {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-form {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        }
+
+        textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        resize: none;
+        }
+
+        .add-comment-btn {
+        padding: 10px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        .comment {
+        display: flex;
+        gap: 10px;
+        padding: 10px 0;
+        border-top: 1px solid #eee;
+        }
+
+        .comment-content {
+        flex: 1;
+        }
+
+        .comment-date {
+        font-size: 12px;
+        color: gray;
+        margin-top: 5px;
+        }
+
+    </style>
+  <div class="container">
+    <div class="project-card">
+      <div class="project-header">
+        <div>
+          <h1 class="project-title">IA Generativa de Imágenes</h1>
+          <div class="author">
+            <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=Ana" alt="Ana García" class="avatar">
+            <span class="author-name">Ana García</span>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="edit-btn">Editar</button>
+          <button class="delete-btn">Eliminar</button>
+        </div>
+      </div>
+
+      <div class="project-description">
+        <p>
+          Este proyecto utiliza técnicas avanzadas de aprendizaje profundo para generar imágenes realistas basadas en descripciones textuales.
+          Implementamos una arquitectura GAN (Generative Adversarial Network) con mejoras en la función de pérdida para lograr una mayor fidelidad
+          y diversidad en las imágenes generadas.
+        </p>
+        <h3>Tecnologías utilizadas:</h3>
+        <ul class="tech-list">
+          <li>Python</li>
+          <li>PyTorch</li>
+          <li>CUDA</li>
+          <li>GANs</li>
+        </ul>
+
+        <div class="links">
+          <a href="https://github.com/anagarcia/ia-generativa-imagenes" class="button">Ver código fuente</a>
+          <a href="https://demo.iagenimages.com" class="button">Ver demo</a>
+        </div>
+      </div>
+
+      <div class="project-images">
+        <img src="/placeholder.svg?height=400&width=600" alt="Imagen del proyecto 1">
+        <img src="/placeholder.svg?height=400&width=600" alt="Imagen del proyecto 2">
+      </div>
+
+      <div class="project-tags">
+        <span class="tag">Inteligencia Artificial</span>
+        <span class="tag">Generación de Imágenes</span>
+        <span class="tag">Deep Learning</span>
+        <span class="tag">GANs</span>
+      </div>
+
+      <div class="project-footer">
+        <button class="like-btn">❤️ 156</button>
+        <button class="favorite-btn">⭐ 42</button>
+        <button class="comment-btn">💬 2 comentarios</button>
+      </div>
+    </div>
+
+    <div class="comments-section">
+      <h2>Comentarios</h2>
+      <div class="comment-form">
+        <textarea placeholder="Añade un comentario..."></textarea>
+        <button class="add-comment-btn">Comentar</button>
+      </div>
+
+      <div class="comment">
+        <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=Carlos" alt="Carlos" class="avatar">
+        <div class="comment-content">
+          <h4>Carlos M.</h4>
+          <span class="comment-date">2023-05-20</span>
+          <p>Impresionante trabajo. ¿Has considerado aplicar técnicas de transfer learning para mejorar la calidad de las imágenes generadas?</p>
+        </div>
+      </div>
+
+      <div class="comment">
+        <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=Elena" alt="Elena" class="avatar">
+        <div class="comment-content">
+          <h4>Elena R.</h4>
+          <span class="comment-date">2023-05-18</span>
+          <p>Me encanta cómo has abordado el problema de mode collapse. ¿Podrías compartir más detalles sobre tu implementación de la función de pérdida?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

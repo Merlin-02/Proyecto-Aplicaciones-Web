@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear una cuenta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            width: 100%;
+            max-width: 28rem;
+            padding: 1.5rem;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .card-description {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.25rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+        }
+        .btn-outline {
+            background-color: white;
+            border: 1px solid #d1d5db;
+            color: #374151;
+        }
+        .alert {
+            background-color: #fecaca;
+            border: 1px solid #f87171;
+            color: #b91c1c;
+            padding: 0.75rem;
+            border-radius: 0.25rem;
+            margin-top: 1rem;
+            display: none;
+        }
+        .social-login {
+            margin-top: 1rem;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+        .icon {
+            margin-right: 0.5rem;
+        }
+        .footer {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .link {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        .progress {
+            width: 100%;
+            height: 4px;
+            background-color: #e5e7eb;
+            border-radius: 2px;
+            margin-top: 0.5rem;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #3b82f6;
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .checkbox-group input {
+            margin-right: 0.5rem;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-title">Crear una cuenta</div>
+        <div class="card-description">Regístrate para acceder a nuestra plataforma</div>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="fullName">Nombre completo</label>
+                <input id="fullName" name="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input id="email" name="email" type="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input id="password" name="password" type="password" required>
+                <div class="progress">
+                    <div id="password-strength" class="progress-bar"></div>
+                </div>
+                <p id="password-strength-text" class="text-xs text-gray-500">Fortaleza de la contraseña: 0%</p>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirmar Contraseña</label>
+                <input id="confirmPassword" name="confirmPassword" type="password" required>
+            </div>
+            <div class="form-group">
+                <label for="profilePicture">Foto de perfil (opcional)</label>
+                <div class="flex items-center space-x-2">
+                    <input id="profilePicture" name="profilePicture" type="file" style="display: none;">
+                    <button type="button" class="btn btn-outline" onclick="document.getElementById('profilePicture').click()">
+                        📤 Subir foto
+                    </button>
+                    <span id="file-name" class="text-sm"></span>
+                </div>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="termsAccepted" name="termsAccepted" required>
+                <label for="termsAccepted">Acepto los términos y condiciones</label>
+            </div>
+            <button type="submit" class="btn">Registrarse</button>
+        </form>
+        <div id="error-message" class="alert"></div>
+        <div class="social-login">
+            <button class="btn btn-outline social-btn">
+                <span class="icon">📧</span> Registrarse con Google
+            </button>
+            <button class="btn btn-outline social-btn">
+                <span class="icon">🐱</span> Registrarse con GitHub
+            </button>
+        </div>
+        <div class="footer">
+            <p>
+                ¿Ya tienes una cuenta? <a href="/login" class="link">Inicia sesión aquí</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            var termsAccepted = document.getElementById('termsAccepted').checked;
+            var errorMessage = document.getElementById('error-message');
+
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Las contraseñas no coinciden.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            if (!termsAccepted) {
+                errorMessage.textContent = 'Debes aceptar los términos y condiciones.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            console.log('Registro exitoso');
+            errorMessage.style.display = 'none';
+        });
+
+        document.getElementById('password').addEventListener('input', function(e) {
+            var password = e.target.value;
+            var strength = 0;
+            if (password.length >= 8) strength += 25;
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength += 25;
+            if (password.match(/\d/)) strength += 25;
+            if (password.match(/[^a-zA-Z\d]/)) strength += 25;
+            
+            var progressBar = document.getElementById('password-strength');
+            var strengthText = document.getElementById('password-strength-text');
+            progressBar.style.width = strength + '%';
+            strengthText.textContent = 'Fortaleza de la contraseña: ' + strength + '%';
+        });
+
+        document.getElementById('profilePicture').addEventListener('change', function(e) {
+            var fileName = e.target.files[0] ? e.target.files[0].name : '';
+            document.getElementById('file-name').textContent = fileName;
+        });
+    </script>
+</body>
+</html>

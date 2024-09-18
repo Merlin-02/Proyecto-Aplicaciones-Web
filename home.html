@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA Hub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7fafc;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .navbar {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+    }
+    
+    .navbar h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    .navbar .actions {
+      display: flex;
+      align-items: center;
+    }
+    
+    .navbar .actions a {
+      margin-left: 16px;
+      text-decoration: none;
+      color: black;
+      font-size: 18px;
+    }
+    
+    .main-content {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 16px;
+    }
+    
+    .search-bar {
+      margin-bottom: 24px;
+    }
+    
+    .search-bar input {
+      width: 100%;
+      max-width: 400px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    
+    .filters {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .filters select {
+      padding: 8px;
+      font-size: 16px;
+    }
+    
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    
+    .card {
+      background-color: white;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card h3 {
+      margin: 0 0 8px 0;
+      font-size: 20px;
+    }
+    
+    .card .author {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    
+    .card .author img {
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+    }
+    
+    .card .info {
+      color: gray;
+      font-size: 14px;
+    }
+    
+    .card .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+    }
+    
+    .card .actions button {
+      background-color: transparent;
+      border: none;
+      color: #3182ce;
+      cursor: pointer;
+    }
+    
+    .card .actions button:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <h1>IA Hub</h1>
+      <div class="actions">
+        <a href="/new-project">Nuevo Proyecto</a>
+        <a href="/profile">Perfil</a>
+        <a href="/settings">Ajustes</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <div class="search-bar">
+      <input type="search" placeholder="Buscar proyectos o usuarios...">
+    </div>
+
+    <div class="filters">
+      <select>
+        <option value="">Categoría</option>
+        <option value="Imagen">Imagen</option>
+        <option value="NLP">NLP</option>
+        <option value="Audio">Audio</option>
+        <option value="Datos">Datos</option>
+        <option value="Visión">Visión</option>
+      </select>
+      <select>
+        <option value="">Tipo de IA</option>
+        <option value="Generativa">Generativa</option>
+        <option value="Conversacional">Conversacional</option>
+        <option value="Reconocimiento">Reconocimiento</option>
+        <option value="Predictiva">Predictiva</option>
+        <option value="Detección">Detección</option>
+      </select>
+    </div>
+
+    <div class="projects-grid">
+      <div class="card">
+        <h3>IA Generativa de Imágenes</h3>
+        <div class="author">
+          <img src="https://api.dicebear.com/6.x/initials/svg?seed=Ana G." alt="Author Avatar">
+          <span>Ana G.</span>
+        </div>
+        <div class="info">
+          <span>Imagen • Generativa</span>
+        </div>
+        <div class="actions">
+          <span>2023-05-15</span>
+          <button>Ver más</button>
+        </div>
+      </div>
+      
+      <!-- Add more project cards as needed -->
+      
+    </div>
+  </div>
+
+</body>
+</html>

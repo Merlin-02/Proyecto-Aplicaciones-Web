@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustes de Usuario</title>
+</head>
+<body>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #f4f4f4;
+            border: none;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-button.active {
+            background: #fff;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .switch-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+
+    </style>
+
+    <div class="container">
+        <h1 class="title">Ajustes de Usuario</h1>
+        
+        <div class="tabs">
+            <button class="tab-button active" data-tab="password">Contraseña</button>
+            <button class="tab-button" data-tab="privacy">Privacidad</button>
+            <button class="tab-button" data-tab="notifications">Notificaciones</button>
+            <button class="tab-button" data-tab="role">Rol de Usuario</button>
+        </div>
+
+        <div class="tab-content active" id="password">
+            <h2>Cambiar Contraseña</h2>
+            <form>
+                <label for="current-password">Contraseña Actual</label>
+                <input type="password" id="current-password" required>
+
+                <label for="new-password">Nueva Contraseña</label>
+                <input type="password" id="new-password" required>
+
+                <label for="confirm-password">Confirmar Nueva Contraseña</label>
+                <input type="password" id="confirm-password" required>
+
+                <button type="submit">Cambiar Contraseña</button>
+            </form>
+        </div>
+
+        <div class="tab-content" id="privacy">
+            <h2>Configuración de Privacidad</h2>
+            <label for="profile-visibility">Visibilidad del Perfil</label>
+            <select id="profile-visibility">
+                <option value="public">Público</option>
+                <option value="private">Privado</option>
+                <option value="friends">Solo Amigos</option>
+            </select>
+
+            <div class="switch-container">
+                <label for="show-email">Mostrar Correo Electrónico</label>
+                <input type="checkbox" id="show-email">
+            </div>
+
+            <div class="switch-container">
+                <label for="show-projects">Mostrar Proyectos</label>
+                <input type="checkbox" id="show-projects" checked>
+            </div>
+        </div>
+
+        <div class="tab-content" id="notifications">
+            <h2>Configuración de Notificaciones</h2>
+            <div class="switch-container">
+                <label for="email-notifications">Notificaciones por Email</label>
+                <input type="checkbox" id="email-notifications" checked>
+            </div>
+
+            <div class="switch-container">
+                <label for="in-app-notifications">Notificaciones en la Aplicación</label>
+                <input type="checkbox" id="in-app-notifications" checked>
+            </div>
+
+            <div class="switch-container">
+                <label for="marketing-emails">Emails de Marketing</label>
+                <input type="checkbox" id="marketing-emails">
+            </div>
+        </div>
+
+        <div class="tab-content" id="role">
+            <h2>Rol de Usuario</h2>
+            <label for="user-role">Selecciona tu Rol</label>
+            <select id="user-role">
+                <option value="regular">Usuario Regular</option>
+                <option value="expert">Experto Verificado</option>
+                <option value="mentor">Mentor</option>
+            </select>
+            <p>Nota: Algunos roles pueden requerir verificación adicional por parte del equipo de administración.</p>
+        </div>
+    </div>
+
+    <script>
+
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const tab = button.dataset.tab;
+
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+                button.classList.add('active');
+                document.getElementById(tab).classList.add('active');
+            });
+        });
+
+    </script>
+</body>
+</html>
